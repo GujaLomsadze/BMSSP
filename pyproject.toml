@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bmssp"
+version = "0.1.0"
+description = "Bounded Multi-Source Shortest Path algorithm breaking the sorting barrier"
+readme = "README.md"
+license = { text = "Apache-2.0" }
+authors = [
+    { name = "Guja Lomsadze", email = "lomsadze.guja@gmail.com" }
+]
+maintainers = [
+    { name = "Guja Lomsadze", email = "lomsadze.guja@gmail.com" }
+]
+keywords = ["graph", "shortest-path", "algorithms", "dijkstra", "optimization"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+requires-python = ">=3.8"
+dependencies = [
+    "numpy>=1.20.0",
+    "networkx>=2.5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=6.0",
+    "pytest-cov>=2.0",
+    "black>=21.0",
+    "isort>=5.0",
+    "flake8>=3.8",
+    "mypy>=0.800",
+    "pre-commit>=2.0",
+]
+docs = [
+    "sphinx>=4.0",
+    "sphinx-rtd-theme>=1.0",
+    "sphinxcontrib-napoleon>=0.7",
+]
+benchmarks = [
+    "matplotlib>=3.3",
+    "pandas>=1.3",
+    "seaborn>=0.11",
+    "memory-profiler>=0.58",
+]
+
+[project.urls]
+Homepage = "https://github.com/GujaLomsadze/BMSSP"
+Documentation = "https://bmssp.readthedocs.io"
+Repository = "https://github.com/GujaLomsadze/BMSSP"
+"Bug Tracker" = "https://github.com/GujaLomsadze/BMSSP/issues"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["bmssp*"]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.isort]
+profile = "black"
+line_length = 88
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "--cov=bmssp --cov-report=term-missing --cov-report=html"
